@@ -8,7 +8,7 @@ account = os.environ.get('ACCOUNT')
 accountList = json.loads(account)
 wx_url = os.environ.get('WX_URL')
 co = ChromiumOptions().headless()
-message = ''
+lst = []
 
 
 def action(username, password, url):
@@ -22,11 +22,12 @@ def action(username, password, url):
     t = page.ele('css:#nav-menu-collapse > ul > li:nth-child(1) > p').inner_html
     su_text = t.split(':')[1] + '---登录成功'
     print(su_text)
-    message = message + su_text + '\n'
+    lst.append(su_text +  '---登录成功')
     page.wait(10)
     page.close()
 
-def send_markdown (message, wx_url):
+def send_markdown (wx_url):
+    message = '\n'.join(lst)
     data = {"msgtype": "markdown", "markdown": {"content": message}}
     r = requests.post(url=wx_url,data=json.dumps(data))
     print(r.text)
@@ -35,7 +36,7 @@ def send_markdown (message, wx_url):
 def main():
     for i in accountList:
         action(i['username'], i['password'], i['url'])
-    send_markdown(message)
+    send_markdown(wx_url)
 
 if __name__ == '__main__':
     main()
