@@ -27,5 +27,6 @@ jobs:
       - name: run 
         env:
           ACCOUNT: ${{ secrets.ACCOUNT }}
+          WX_URL: ${{ secrets.WX_URL }}
         run: |
           python login_script.py
