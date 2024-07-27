@@ -8,7 +8,7 @@ account = os.environ.get('ACCOUNT')
 accountList = json.loads(account)
 wx_url = os.environ.get('WX_URL')
 co = ChromiumOptions().headless()
-lst = []
+lst = ["消息通知 by Serv00脚本："]
 
 
 def action(username, password, url):
@@ -22,7 +22,7 @@ def action(username, password, url):
     t = page.ele('css:#nav-menu-collapse > ul > li:nth-child(1) > p').inner_html
     su_text = t.split(':')[1] + '---登录成功'
     print(su_text)
-    lst.append(su_text +  '---登录成功')
+    lst.append(su_text)
     page.wait(10)
     page.close()
 
