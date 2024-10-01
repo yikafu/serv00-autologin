@@ -2,11 +2,11 @@ name: Run
 
 on:
   workflow_dispatch:
-  schedule:
-     - cron: '0 0 */30 * *' # 每30天运行一次
-  push:
-    branches:
-      - main
+  # schedule:
+  #    - cron: '0 0 */30 * *' # 每30天运行一次
+  # push:
+  #   branches:
+  #     - main
 jobs:
   login:
     runs-on: ubuntu-latest
